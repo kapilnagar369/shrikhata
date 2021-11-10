@@ -1,0 +1,11 @@
+[27-Dec-2019 14:40:25 UTC] PHP Fatal error:  Cannot redeclare Api::artistList() in /home/tbvg41j6kaa4/public_html/homecare/application/controllers/Api.php on line 225
+[27-Dec-2019 14:40:30 UTC] PHP Fatal error:  Cannot redeclare Api::artistList() in /home/tbvg41j6kaa4/public_html/homecare/application/controllers/Api.php on line 225
+[27-Dec-2019 14:40:38 UTC] PHP Fatal error:  Cannot redeclare Api::artistList() in /home/tbvg41j6kaa4/public_html/homecare/application/controllers/Api.php on line 225
+[27-Dec-2019 14:40:50 UTC] PHP Fatal error:  Cannot redeclare Api::artistList() in /home/tbvg41j6kaa4/public_html/homecare/application/controllers/Api.php on line 225
+[27-Dec-2019 14:41:00 UTC] PHP Fatal error:  Cannot redeclare Api::artistList() in /home/tbvg41j6kaa4/public_html/homecare/application/controllers/Api.php on line 225
+[27-Dec-2019 14:41:35 UTC] PHP Fatal error:  Cannot redeclare Api::artistList() in /home/tbvg41j6kaa4/public_html/homecare/application/controllers/Api.php on line 225
+[27-Dec-2019 14:49:30 UTC] PHP Fatal error:  Cannot redeclare Api::artistList() in /home/tbvg41j6kaa4/public_html/homecare/application/controllers/Api.php on line 225
+[27-Dec-2019 14:49:41 UTC] PHP Fatal error:  Cannot redeclare Api::artistList() in /home/tbvg41j6kaa4/public_html/homecare/application/controllers/Api.php on line 225
+[27-Dec-2019 14:49:48 UTC] PHP Fatal error:  Cannot redeclare Api::artistList() in /home/tbvg41j6kaa4/public_html/homecare/application/controllers/Api.php on line 225
+[27-Dec-2019 14:53:52 UTC] PHP Fatal error:  Cannot redeclare Api::artistList() in /home/tbvg41j6kaa4/public_html/homecare/application/controllers/Api.php on line 225
+[29-Dec-2019 22:06:43 UTC] PHP Fatal error:  Cannot redeclare Api::addpost() in /home/tbvg41j6kaa4/public_html/homecare/application/controllers/Api.php on line 109
