@@ -96,9 +96,9 @@
                                                         <a href="<?php echo site_url('Party/editParty/').$value['id'];?>" class="btn btn-info btn-sm">
                                                             <i class="far fa-edit"></i>
                                                         </a>
-                                                        <a href="<?php echo site_url('Party/deleterecord/').$value['id'];?>/Party/details" class="btn btn-danger btn-sm" onclick="return confirm('Do you want to delete this Party?')">
+                                                      <!--   <a href="<?php //echo site_url('Party/deleterecord/').$value['id'];?>/Party/details" class="btn btn-danger btn-sm" onclick="return confirm('Do you want to delete this Party?')">
                                                             <i class="fas fa-trash-alt"></i>
-                                                        </a>
+                                                        </a> -->
                                                     </td>
                                                 </tr>
                                             <?php } ?>

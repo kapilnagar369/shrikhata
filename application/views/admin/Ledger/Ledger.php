@@ -45,9 +45,9 @@
                 <!-- ============================================================== -->
                 <div class="row">
                     <div class="col-12">
-                            <?php echo $this->session->flashdata('AddEntry');?>
-                            <?php echo $this->session->flashdata('UpadteEntry');?>
-                            <?php echo $this->session->flashdata('deleteEntry');?>
+                            <?php echo $this->session->flashdata('AddLedger');?>
+                            <?php echo $this->session->flashdata('UpadteLedger');?>
+                            <?php echo $this->session->flashdata('deleteLedger');?>
                         <div class="card">
                             <div class="card-body">
                                 <h5 class="card-title">Ledger</h5>
@@ -55,7 +55,7 @@
                                 <div class="form-group row">
                                         <label for="Entry_code" class="col-sm-1 text-right control-label col-form-label">Party</label>
                                         <div class="col-sm-2">
-                                           <select onchange="changeparty(this.value)" class="form-control" id="Upline_Code"    name="partty_code"  >
+                                           <select onchange="changeparty(this.value)" class="form-control" id="party_code"    name="party_code"  >
                                              <option value=""> Please Select </option>
                                               <?php foreach($party as $pat) { ?>
                                               <option    <?php if(isset($party_id) && $party_id==$pat['id']) { echo 'selected';}?>       value="<?php echo $pat['id'] ?>"> <?php echo  $pat['party_code'] .' ( '. $pat['party_name'].')'; ?></option>
@@ -72,7 +72,7 @@
                                        
                                         </div>
                                         <div class="col-sm-1 pull-right">
-                                          <input data-toggle="modal" data-target="#myModal" type="button" name="" class="btn btn-success" value="Hawala entry">
+                                          <input onclick="openHawalModel($('#party_code').val())" type="button" name="" class="btn btn-success" value="Hawala entry">
                                         </div>
                                     </div>
                                
@@ -195,6 +195,7 @@
   <div class="modal-dialog">
 
     <!-- Modal content-->
+       <form  method="post" id="Myform" onsubmit="return Validate();"  action="<?php echo site_url('/Hawala/AddHawalafromLedger'); ?>" >   
     <div class="modal-content">
       <div class="modal-header">
         <h4 class="modal-title">Hawala Entry </h4>
@@ -202,11 +203,12 @@
         
       </div>
       <div class="modal-body">
-                               <div class="form-group row">
+                         <div class="form-group row">
                                        
                                        <label for="" class="col-sm-4 text-right control-label col-form-label">Trxn Date  </label>
                                         <div class="col-sm-8">
                                             <input type="date"   class="form-control" id="date" value="<?php  echo date('Y-m-d'); ?>"  name="trxn_date" required >
+                                            <input type="hidden"   class="form-control" id="party_ids" name="party_ids" required >
                                         </div>
                                      
                                     
@@ -226,9 +228,9 @@
                                
                                            </div>
                                     <div class="form-group row">
-                                         <label for="credit_party_id" class="col-sm-4 text-right control-label col-form-label">Credit Party A/C</label>
+                                         <label for="credit_party_id" class="col-sm-4 text-right control-label col-form-label">(Debit/Credit) Party A/C</label>
                                         <div class="col-sm-8">
-                                            <select onchange=""  class="form-control"  id="party_idh"  name="party_idh" required >
+                                            <select   class="form-control"  id="party_idh"  name="party_idh" required >
                                               <option value="">Please Select</option>
                                               <?php if($party) {
                                                   foreach($party as $partyData) { ?>
@@ -258,14 +260,27 @@
                                         <div class="col-sm-8">
                                             <textarea name="remark" style="width: 100%"></textarea>
                                         </div>
+                                       
                                     </div>
-
-
+ 
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+       
+        <input type="submit" class="btn btn-default pull-left" / >
+  <!-- <button type="button" class="btn btn-default pull-left" data-dismiss="modal">Close</button> -->
       </div>
+      </form>
+
     </div>
 
   </div>
 </div>
+
+<script type="text/javascript">
+  
+  function openHawalModel(val) {
+    $('#party_ids').val(val);
+    $("#myModal").modal('show');
+
+  }
+</script>>

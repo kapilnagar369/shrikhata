@@ -96,9 +96,9 @@
                                                         <a href="<?php echo site_url('Idmaster/editIdmaster/').$value['id'];?>" class="btn btn-info btn-sm">
                                                             <i class="far fa-edit"></i>
                                                         </a>
-                                                        <a href="<?php echo site_url('Idmaster/deleterecord/').$value['id'];?>/Idmaster/details" class="btn btn-danger btn-sm" onclick="return confirm('Do you want to delete this Idmaster?')">
+                                                      <!--   <a href="<?php //echo site_url('Idmaster/deleterecord/').$value['id'];?>/Idmaster/details" class="btn btn-danger btn-sm" onclick="return confirm('Do you want to delete this Idmaster?')">
                                                             <i class="fas fa-trash-alt"></i>
-                                                        </a>
+                                                        </a> -->
                                                     </td>
                                                 </tr>
                                             <?php } ?>

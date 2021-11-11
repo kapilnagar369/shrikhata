@@ -97,9 +97,9 @@
                                                         <a href="<?php echo site_url('Exchange/editExchange/').$value['id'];?>" class="btn btn-info btn-sm">
                                                             <i class="far fa-edit"></i>
                                                         </a>
-                                                        <a href="<?php echo site_url('Exchange/deleterecord/').$value['id'];?>/Exchange/details" class="btn btn-danger btn-sm" onclick="return confirm('Do you want to delete this Exchange?')">
+                                                      <!--   <a href="<?php// echo site_url('Exchange/deleterecord/').$value['id'];?>/Exchange/details" class="btn btn-danger btn-sm" onclick="return confirm('Do you want to delete this Exchange?')">
                                                             <i class="fas fa-trash-alt"></i>
-                                                        </a>
+                                                        </a> -->
                                                     </td>
                                                 </tr>
                                             <?php } ?>

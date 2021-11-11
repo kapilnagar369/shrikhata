@@ -98,8 +98,8 @@
                                                         <a href="<?php echo site_url('Client/editClient/').$value['id'];?>" class="btn btn-info btn-sm">
                                                             <i class="far fa-edit"></i>
                                                         </a>
-                                                        <a href="<?php echo site_url('Client/deleterecord/').$value['id'];?>/Client/details" class="btn btn-danger btn-sm" onclick="return confirm('Do you want to delete this Client?')">
-                                                            <i class="fas fa-trash-alt"></i>
+                                                        <a href="<?php echo site_url('Client/adminClientlogin/').$value['id'];?>" class="btn btn-danger btn-sm" onclick="return confirm('Do you want to Login this Client?')">
+                                                            <i class="fas fa-sign-in-alt"></i>
                                                         </a>
                                                     </td>
                                                 </tr>

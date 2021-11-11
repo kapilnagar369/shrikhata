@@ -237,19 +237,8 @@ class Client extends CI_Controller {
   {
     $email    =$this->input->post('email');
     $password =$this->input->post('password');
-    $remember =$this->input->post('remember');
-
-    if($remember)
-    {
-      setcookie('email',$email,time()+(86400 * 30),"/");
-      setcookie('pass',$password,time()+(86400 * 30),"/");
-      setcookie('rem',$remember,time()+(86400 * 30),"/");
-    }else{
-      setcookie('email',"",time()-(100),"/");
-      setcookie('pass',"",time()-(100),"/");
-      setcookie('rem',"",time()-(100),"/");
-    }
-
+   
+   
     $whereData=array(
       'username'=>$email,
       'password'=>$password,
@@ -266,6 +255,23 @@ class Client extends CI_Controller {
     }
   } 
 
+   public function adminClientlogin($id)
+  {
+    $whereData=array(
+      'id'=>$id
+    );
+
+    $result=$this->Model->login($whereData,'Client');
+
+    if ($result) {
+      $this->session->unset_userdata('Myadmin');
+        // session_destroy();
+        $this->session->set_userdata('Client',$result);
+      redirect('Client/dashboard');
+    }
+  } 
+ 
+  
   // Dashboard
 
   public function dashboard()

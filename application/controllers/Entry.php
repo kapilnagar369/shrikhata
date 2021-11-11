@@ -221,7 +221,7 @@ class Entry extends CI_Controller {
 
 
 
-
+       $amount_ratio = $this->session->userdata('Client')->amount_ratio;  
        $sql="SELECT vouchar_id,$client_id as client_id,'".date('Y-m-d H:i:s',strtotime($trxn_date))."' as created_at,'".date('Y-m-d',strtotime($trxn_date))."' as trxn_date,   if(sum(gross_amount) <0,sum(gross_amount),0) as debit,if(sum(gross_amount) >0,sum(gross_amount),0) as credit , 'Shri khata Settlement' as narration ,$party_id as party_id ,'4' as type,'0' as is_deleted  FROM `voucher_details`  join Idmaster on Idmaster.id=voucher_details.user_id join Exchange on Exchange.id =Idmaster.exch_code
         where vouchar_id=$vch_id and Exchange.Direct_Settle ='No' having (debit !=0 or credit !=0)  
     	   union all
@@ -233,10 +233,10 @@ class Entry extends CI_Controller {
  		
  		  where vouchar_id=$vch_id  having (debit !=0 or credit !=0)
           union all
-       SELECT vouchar_id,$client_id as client_id,'".date('Y-m-d H:i:s',strtotime($trxn_date))."' as created_at,'".date('Y-m-d',strtotime($trxn_date))."' as trxn_date,   if((point*Exchange.rate)/100 <0,(point*Exchange.rate)/100,0) as debit,if((point*Exchange.rate)/100 >0,(point*Exchange.rate)/100,0) as credit ,  CONCAT('Settlement of ',Exchange.Exchange_Name) as narration ,Settlement_ac  as party_id ,'10' as type,'0' as is_deleted  FROM `voucher_details`  join Idmaster on Idmaster.id=voucher_details.user_id join Exchange on Exchange.id =Idmaster.exch_code
+       SELECT vouchar_id,$client_id as client_id,'".date('Y-m-d H:i:s',strtotime($trxn_date))."' as created_at,'".date('Y-m-d',strtotime($trxn_date))."' as trxn_date,   if((point*Exchange.rate)/".$amount_ratio." <0,(point*Exchange.rate)/".$amount_ratio.",0) as debit,if((point*Exchange.rate)/".$amount_ratio." >0,(point*Exchange.rate)/".$amount_ratio.",0) as credit ,  CONCAT('Settlement of ',Exchange.Exchange_Name) as narration ,Settlement_ac  as party_id ,'10' as type,'0' as is_deleted  FROM `voucher_details`  join Idmaster on Idmaster.id=voucher_details.user_id join Exchange on Exchange.id =Idmaster.exch_code
         where vouchar_id=$vch_id and Exchange.Direct_Settle ='Yes' group by party_id having (debit !=0 or credit !=0) 
         union all
-        SELECT vouchar_id,$client_id as client_id,'".date('Y-m-d H:i:s',strtotime($trxn_date))."' as created_at,'".date('Y-m-d',strtotime($trxn_date))."' as trxn_date,   if(((Idmaster.rate-Exchange.rate)*point)/100 <0,((Idmaster.rate-Exchange.rate)*point)/100,0) as debit,if(((Idmaster.rate-Exchange.rate)*point)/100 >0,((Idmaster.rate-Exchange.rate)*point)/100,0) as credit , CONCAT('Settlement of ',Exchange.Exchange_Name) as narration ,$party_id  as party_id ,'11' as type,'0' as is_deleted  FROM `voucher_details`  join Idmaster on Idmaster.id=voucher_details.user_id join Exchange on Exchange.id =Idmaster.exch_code
+        SELECT vouchar_id,$client_id as client_id,'".date('Y-m-d H:i:s',strtotime($trxn_date))."' as created_at,'".date('Y-m-d',strtotime($trxn_date))."' as trxn_date,   if(((Idmaster.rate-Exchange.rate)*point)/".$amount_ratio." <0,((Idmaster.rate-Exchange.rate)*point)/".$amount_ratio.",0) as debit,if(((Idmaster.rate-Exchange.rate)*point)/".$amount_ratio." >0,((Idmaster.rate-Exchange.rate)*point)/".$amount_ratio.",0) as credit , CONCAT('Settlement of ',Exchange.Exchange_Name) as narration ,$party_id  as party_id ,'11' as type,'0' as is_deleted  FROM `voucher_details`  join Idmaster on Idmaster.id=voucher_details.user_id join Exchange on Exchange.id =Idmaster.exch_code
         where vouchar_id=$vch_id and Exchange.Direct_Settle ='Yes' having (debit !=0 or credit !=0) 
         ";      
     $query = $this->db->query($sql);
