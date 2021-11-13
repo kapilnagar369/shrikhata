@@ -38,11 +38,11 @@
                         <div class="card">
                             <div class="card-body">
                                 <h5 class="card-title">Hawala</h5>
-                                <div class="btn-group" style="float: right;">
-                                    <a href="<?php echo site_url('Hawala/addHawala');?>" id="addRow" class="btn btn-info" style="margin-top: -35px;">
+                              <!--   <div class="btn-group" style="float: right;">
+                                    <a href="<?php // echo site_url('Hawala/addHawala');?>" id="addRow" class="btn btn-info" style="margin-top: -35px;">
                                        <i class="fa fa-plus"></i> Add
                                     </a>
-                                </div>
+                                </div> -->
                                 <div class="table-responsive">
                                     <table id="zero_config" class="table table-striped table-bordered">
                                         <thead>
@@ -97,25 +97,44 @@
             <!-- End Container fluid  -->
             <!-- ============================================================== -->
 
-          <!-- Modal -->
-<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
+ <table id="myTable" class="table table-bordered table-striped table-fixed">
+         <thead>
+            <th>Key Account</th>
+            <th>Key Account Code</th>
+            <th>Potential Value</th>
+            <th>Sales Value</th>
+            <th>Penetration %</th>
+            <th>Potential (H/M/L)</th>
+            <th>Penetration (H/M/L)</th>
+         </thead>
+         <?php echo "Some data from database here";?>   
+      </table>
+      <button id="convert">
+      Convert to image
+      </button>
+      <div id="result">
+         <!-- Result will appear be here -->
       </div>
-      <div class="modal-body">
-       Are You Sure, Want to Delete This?
-      </div>
-      <div class="modal-footer">
-        <button type="button"  class="btn btn-secondary" data-dismiss="modal">NO</button>
-        <button type="button" onclick="$('#no_e').removeClass('hide');$('.modal-body').text('Do You want accounting effect or not?');$(this).attr('onclick','askforpassword()')";
-" class="btn btn-primary">Yes</button>
- <button type="button" id="no_e" onclick="deleteHawala();" class="btn btn-primary hide">No,Only Hawala!</button>
-      </div>
-    </div>
-  </div>
-</div>
+      <script type="text/javascript" src="https://github.com/niklasvh/html2canvas/releases/download/0.5.0-alpha1/html2canvas.js"></script>
+      <script>
+         //convert table to image            
+         function convertToImage() {
+            var resultDiv = document.getElementById("result");
+            html2canvas(document.getElementById("myTable"), {
+                onrendered: function(canvas) {
+                    var img = canvas.toDataURL("image/png");
+                    result.innerHTML = '<a download="test.jpeg" href="'+img+'">test</a>';
+                    
+var fakeLink = document.createElement('a');
+fakeLink.setAttribute('href', 'whatsapp://send?text='+encodeURIComponent(img));
+fakeLink.setAttribute('data-action', 'share/whatsapp/share');
+fakeLink.click();
+                    }
+            });
+         }        
+         //click event
+         var convertBtn = document.getElementById("convert");
+         convertBtn.addEventListener('click', convertToImage);
+    
+
+      </script>

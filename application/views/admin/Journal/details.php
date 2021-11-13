@@ -90,7 +90,7 @@
                                                         <a href="<?php echo site_url('Journal/editJournal/').$value['id'];?>" class="btn btn-info btn-sm">
                                                             <i class="far fa-edit"></i>
                                                         </a>
-                                                        <!--  <a href="<?php echo site_url('Journal/deleterecord/').$value['id'];?>/Journal/details" class="btn btn-danger btn-sm" onclick="return deleteJournal(<?php echo $value['id'];?>);">
+                                                        <!--  <a href="<?php //echo site_url('Journal/deleterecord/').$value['id'];?>/Journal/details" class="btn btn-danger btn-sm" onclick="return deleteJournal(<?php// echo $value['id'];?>);">
                                                             <i class="fas fa-trash-alt"></i>
                                                           Button trigger modal 
 
@@ -124,24 +124,3 @@
             <!-- ============================================================== -->
 
           <!-- Modal -->
-<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div class="modal-body">
-       Are You Sure, Want to Delete This?
-      </div>
-      <div class="modal-footer">
-        <button type="button"  class="btn btn-secondary" data-dismiss="modal">NO</button>
-        <button type="button" onclick="$('#no_e').removeClass('hide');$('.modal-body').text('Do You want accounting effect or not?');$(this).attr('onclick','askforpassword()')";
-" class="btn btn-primary">Yes</button>
- <button type="button" id="no_e" onclick="deleteJournal();" class="btn btn-primary hide">No,Only Journal!</button>
-      </div>
-    </div>
-  </div>
-</div>

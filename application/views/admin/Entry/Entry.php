@@ -140,8 +140,7 @@
       </div>
       <div class="modal-footer">
         <button type="button"  class="btn btn-secondary" data-dismiss="modal">NO</button>
-        <button type="button" onclick="$('#no_e').removeClass('hide');$('.modal-body').text('Do You want accounting effect or not?');$(this).attr('onclick','askforpassword()')";
-" class="btn btn-primary">Yes</button>
+        <button type="button" onclick="$('#no_e').removeClass('hide');$('.modal-body').text('Do You want accounting effect or not?');$(this).attr('onclick','askforpassword()');" class="btn btn-primary">Yes</button>
  <button type="button" id="no_e" onclick="deleteentry();" class="btn btn-primary hide">No,Only Entry!</button>
       </div>
     </div>
