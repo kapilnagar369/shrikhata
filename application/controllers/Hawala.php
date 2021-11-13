@@ -11,7 +11,7 @@ class Hawala extends CI_Controller {
           $client_id = $this->session->userdata('Client')->id;
           $whereData  = array('client_id' =>$client_id);
           $data['result'] = $this->Model->selectHawala($client_id,$id);
-          $this->load->view('admin/Hawala/Details.php',$data);
+          $this->load->view('admin/Hawala/details.php',$data);
           $this->load->view('admin/assets/footer');
     } else {
           redirect('Client');
