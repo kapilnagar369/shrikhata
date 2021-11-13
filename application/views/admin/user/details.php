@@ -38,11 +38,7 @@
                         <div class="card">
                             <div class="card-body">
                                 <h5 class="card-title">Users</h5>
-                                <!-- <div class="btn-group" style="float: right;">
-                                    <a href="<?php echo site_url('Category/addcategory');?>" id="addRow" class="btn btn-info" style="margin-top: -35px;">
-                                       <i class="fa fa-plus"></i> Add
-                                    </a>
-                                </div> -->
+                              
                                 <div class="table-responsive">
                                     <table id="zero_config" class="table table-striped table-bordered">
                                         <thead>

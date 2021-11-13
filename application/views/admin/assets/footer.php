@@ -664,6 +664,7 @@ $(document).ready(function() {
                                 
                 val = api.row(api.row($(rows).eq( i )).index()).data();      //current order index
                 $.each(val,function(index2,val2){
+                        console.log(index2,val2);
                         if (typeof subtotale[groupid] =='undefined'){
                             subtotale[groupid] = new Array();
                         }
@@ -672,7 +673,7 @@ $(document).ready(function() {
                         }
                         if (typeof totale['Totale'][index2] =='undefined'){ totale['Totale'][index2] = 0; }
                         
-                        valore = Number(val2.replace('€',"").replace('.',"").replace(',',"."));
+                        valore = Number(val2);
                         subtotale[groupid][index2] += valore;
                         totale['Totale'][index2] += valore;
                 });
@@ -683,13 +684,14 @@ $(document).ready(function() {
     $('tbody').find('.group').each(function (i,v) {
                     var rowCount = $(this).nextUntil('.group').length;
             $(this).find('td:first').append($('<span />', { 'class': 'rowCount-grid' }).append($('<b />', { 'text': ' ('+rowCount+')' })));
-            $(this).find('td:first').attr('colspan',6);
-                        //  var subtd = '';
-                        // for (var a=2;a<colonne;a++)
-                        // { 
-                        //     subtd += '<td>'+subtotale[i][a]+' OUT OF '+totale['Totale'][a]+ ' ('+ Math.round(subtotale[i][a]*100/totale['Totale'][a],2) +'%) '+'</td>';
-                        // }
-                        // $(this).append(subtd);
+            $(this).find('td:first').attr('colspan',4);
+                         var subtd = '';
+                        for (var a=2;a<colonne;a++)
+                        { 
+                            if(a==8 || a==7 || a==6 || a==5)
+                            subtd += '<td>'+subtotale[i][a]+'</td>';
+                        }
+                         $(this).append(subtd);
                 });
             
         }
