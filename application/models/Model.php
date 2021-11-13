@@ -239,13 +239,13 @@ class Model extends CI_Model {
 	public function selectHawala($client_id,$id)
     {	
     	$this->db->select('hawala.*,debit.party_name as debit_party_name,debit.party_code as debit_party_code,credit.party_code as credit_party_code,credit.party_name as credit_party_name');
-	    $this->db->join('Party debit', 'hawala.debit_party = debit.id'); 
-	    $this->db->join('Party credit', 'hawala.credit_party = credit.id'); 
-	   	$this->db->from('hawala');
+	    $this->db->join('Party debit', 'Hawala.debit_party = debit.id'); 
+	    $this->db->join('Party credit', 'Hawala.credit_party = credit.id'); 
+	   	$this->db->from('Hawala');
 
-	    $this->db->where('hawala.client_id',$client_id);
+	    $this->db->where('Hawala.client_id',$client_id);
 	    if($id)
-	    $this->db->where('hawala.id',$id);
+	    $this->db->where('Hawala.id',$id);
 	   
 	    $query = $this->db->get();
 	    	// echo $this->db->last_query();
