@@ -64,6 +64,9 @@
                                             </select>
                                        
                                         </div>
+                                         <div class="col-sm-1 pull-right">
+                                          <i onclick="convertToImage();" class="mdi mdi-whatsapp btn btn-success"></i>
+                                        </div>
                                              <label for="Entry_code" class="col-sm-1 text-right control-label col-form-label">Trxn Date </label>
                                         <div class="col-sm-2">
                                          <input type="text" name="daterange">
@@ -71,6 +74,8 @@
                                          <input type="hidden" value="<?php echo date('Y-m-d');?>" id="end">
                                        
                                         </div>
+
+
                                         <div class="col-sm-1 pull-right">
                                           <input onclick="openHawalModel($('#party_code').val())" type="button" name="" class="btn btn-success" value="Hawala entry">
                                         </div>
@@ -292,4 +297,4 @@
       $('#party_idh').val('').change();
     }
   }
-</script>>
+</script>

@@ -56,6 +56,66 @@
     <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.min.js"></script>
     
 
+      <script type="text/javascript" src="https://github.com/niklasvh/html2canvas/releases/download/0.5.0-alpha1/html2canvas.js"></script>
+      <script>
+         function base64ToBlob(base64, mime) 
+{
+    mime = mime || '';
+    var sliceSize = 1024;
+    var byteChars = window.atob(base64);
+    var byteArrays = [];
+
+    for (var offset = 0, len = byteChars.length; offset < len; offset += sliceSize) {
+        var slice = byteChars.slice(offset, offset + sliceSize);
+
+        var byteNumbers = new Array(slice.length);
+        for (var i = 0; i < slice.length; i++) {
+            byteNumbers[i] = slice.charCodeAt(i);
+        }
+
+        var byteArray = new Uint8Array(byteNumbers);
+
+        byteArrays.push(byteArray);
+    }
+
+    return new Blob(byteArrays, {type: mime});
+}
+
+         //convert table to image            
+ function convertToImage() {
+    showsnakbar("Sending Whatsapp");
+     html2canvas(document.getElementById("zero_config"), {
+         background :'#FFFFFF',
+         onrendered: function(canvas) {
+             var img = canvas.toDataURL("image/jpg");
+             // result.innerHTML = '<a download="test.jpeg" href="'+img+'">test</a>';
+
+
+             var image = img;
+             var base64ImageContent = image.replace(/^data:image\/(png|jpg);base64,/, "");
+             var blob = base64ToBlob(base64ImageContent, 'image/png');
+             var formData = new FormData();
+             formData.append('file', blob);
+
+             $.ajax({
+                     url: 'https://api.whtapi.co.in/smsfile.php?apikey=d78bbfd11b0b6811e52a4b412f12d8b3&phone=919806851570&msg=Hello aj please find Report',
+                     type: "POST",
+                     cache: false,
+                     contentType: false,
+                     processData: false,
+                     data: formData
+                 })
+                 .done(function(e) {
+                     console.log(e);
+                     showsnakbar("Message Sent on Whatsapp");
+                 });
+
+         }
+     });
+ }
+    
+
+      </script>
     <script>
         /****************************************
          *       Basic Table                   *
@@ -235,14 +295,14 @@ $.each(JSON.parse(data), function(i, d) {
   }
   function updateCommentbal(txt,id) {
     
-     $postdata = {};
-    $postdata["party_id"]=id;
-    $postdata["comments"]=txt;
-  $.post('<?php echo base_url("/index.php/Ledger/updateComment")?>',$postdata,function (data) {
+  //    $postdata = {};
+  //   $postdata["party_id"]=id;
+  //   $postdata["comments"]=txt;
+  // $.post('<?php echo base_url("/index.php/Ledger/updateComment")?>',$postdata,function (data) {
 
-      console.log('done');
+  //     console.log('done');
 
-      });
+  //     });
       
   }
 $(document).ready(function() {

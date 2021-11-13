@@ -45,7 +45,7 @@
         <!-- Login box.scss -->
         <!-- ============================================================== -->
         <div class="auth-wrapper d-flex no-block justify-content-center align-items-center bg-dark" style="margin: 0% !important" >
-            <div class="auth-box bg-dark border-top border-secondary"  style="margin: 0% !important">
+            <div class="auth-box bg-dark "  style="margin: 0% !important">
                 <center><img src="<?php echo base_url();?>/assets/images/new-admin.jpg"></center>
                 <div id="loginform">
                     <div class="text-center p-t-20 p-b-20">
