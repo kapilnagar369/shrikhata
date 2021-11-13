@@ -123,6 +123,7 @@
 
                                                 <a href="<?php echo base_url('/index.php/Entry/editEntry/').$value['vouchar_id']?>"><?php echo $value['vch_no'];?></a>
                                                   <a href="<?php echo base_url('/index.php/Journal/editJournal/').$value['vouchar_id']?>"><?php echo $value['vch_noj'];?></a>
+                                                   <a href="<?php echo base_url('/index.php/Hawala/details/').$value['vouchar_id']?>"><?php echo $value['vch_noh'];?></a>
                                               </td>
                                               <td><?php echo date('d-m-Y',strtotime($value['trxn_date']));?></td>
                                               <td><?php echo $value['narration'];?></td>
@@ -230,7 +231,7 @@
                                     <div class="form-group row">
                                          <label for="credit_party_id" class="col-sm-4 text-right control-label col-form-label">(Debit/Credit) Party A/C</label>
                                         <div class="col-sm-8">
-                                            <select   class="form-control"  id="party_idh"  name="party_idh" required >
+                                            <select onchange="check_party(this.value);"   class="form-control"  id="party_idh"  name="party_idh" required >
                                               <option value="">Please Select</option>
                                               <?php if($party) {
                                                   foreach($party as $partyData) { ?>
@@ -280,7 +281,15 @@
   
   function openHawalModel(val) {
     $('#party_ids').val(val);
+   if(val!='') {
     $("#myModal").modal('show');
+    } else { alert('Please Select Party First'); }
+  }
+  function check_party(val) {
 
+    if(val==$('#party_ids').val()) {
+      alert('Debit credit party cant be same');
+      $('#party_idh').val('').change();
+    }
   }
 </script>>

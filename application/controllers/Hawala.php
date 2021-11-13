@@ -3,15 +3,15 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 class Hawala extends CI_Controller {
 
-  public function details ($party_id='',$start='',$end='')
+  public function details ($id='')
   {   
     if ($this->session->userdata('Client')) {
           $this->load->view('admin/assets/header');
           $this->load->view('admin/assets/sidebar');
           $client_id = $this->session->userdata('Client')->id;
           $whereData  = array('client_id' =>$client_id);
-          $data['party'] = $this->Model->selectAllById('Party', $whereData);
-          $this->load->view('admin/Ledger/Hawala.php',$data);
+          $data['result'] = $this->Model->selectHawala($client_id,$id);
+          $this->load->view('admin/Hawala/Details.php',$data);
           $this->load->view('admin/assets/footer');
     } else {
           redirect('Client');
@@ -20,7 +20,6 @@ class Hawala extends CI_Controller {
 
   public function AddHawalafromLedger() {
     $client_id = $this->session->userdata('Client')->id;
-  print_r($_POST);
     if($this->input->post('debit_credit')=='Debit') {
        $credit_party = $this->input->post('party_ids');
        $debit_party = $this->input->post('party_idh');
@@ -28,7 +27,15 @@ class Hawala extends CI_Controller {
        $credit_party = $this->input->post('party_idh');
        $debit_party = $this->input->post('party_ids');
     }
-    $data = array(
+             $whereData  = array('client_id' =>$client_id);
+             $ent = $this->Model->getSingleRoworder('Hawala', $whereData,'id desc');
+            $vch_num = 0;
+            if(isset($ent)) {
+            $vch_num = str_replace($this->session->userdata('Client')->client_code.'HV','',$ent->vch_no);
+            }
+            $vouchar_no = $this->session->userdata('Client')->client_code.'HV'.($vch_num+1);
+            $data = array(
+                'vch_no'    =>  $vouchar_no,
                 'debit_party'    => $debit_party,
                 'credit_party'   => $credit_party,
                 'trxn_date'      => date('Y-m-d',strtotime($this->input->post('trxn_date'))),
@@ -46,27 +53,31 @@ class Hawala extends CI_Controller {
               $debit_party = $this->input->post('party_idh');
                $amount = $this->input->post('amount');
          
-            
+               $where  = array('client_id' =>$this->session->userdata('Client')->id,'id'=>$debit_party);
+               $party_data=$this->Model->selectAllById('Party', $where);
             $accounts=array('client_id'=>$client_id,
                             'type'=>'12',
                             'party_id'=>$debit_party,
                             'credit'=>$amount,
+                            'vouchar_id'=>$hawala_id,
                             'debit'=>0,
                             'trxn_date'=>date('Y-m-d',strtotime($this->input->post('trxn_date'))),
-                            'narration'=>'Transfer to party',
+                            'narration'=>'Transfer to '.$party_data[0]['party_name'],
                             'created_at'    => date("Y-m-d H:i:s"),
                             'updated_at'    => date("Y-m-d H:i:s")
           );
-         
+            
           $result = $this->Model->insert($accounts,'accounts');
-         
-          $accounts1=array('client_id'=>$client_id,
+           $where  = array('client_id' =>$this->session->userdata('Client')->id,'id'=>$credit_party);
+            $party_data2=$this->Model->selectAllById('Party', $where);
+           $accounts1=array('client_id'=>$client_id,
                             'type'=>'13',
                             'party_id'=>$credit_party,
+                            'vouchar_id'=>$hawala_id,
                             'credit'=>0,
                             'debit'=>$amount,
                             'trxn_date'=>date('Y-m-d',strtotime($this->input->post('trxn_date'))),
-                            'narration'=>'Transfer from party',
+                            'narration'=>'Transfer from '.$party_data2[0]['party_name'],
                             'created_at'    => date("Y-m-d H:i:s"),
                             'updated_at'    => date("Y-m-d H:i:s")
           );
@@ -77,18 +88,13 @@ class Hawala extends CI_Controller {
                   <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
                   <strong>Hawala Entry Details Added Sucessfully!!</strong>.
                   </div>');
-                
                 redirect('Ledger/details');
-                
             } else {
-                
                 $this->session->set_flashdata('AddLedger', '<div class="alert alert-danger ">
                 <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
                 <strong>Sorry Hawala Entry Not Added!!</strong>.
                 </div>');
-                
                  redirect('Ledger/details');
-                
             }
   }
 

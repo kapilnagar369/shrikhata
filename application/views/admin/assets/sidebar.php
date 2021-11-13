@@ -73,6 +73,11 @@
                             <li class="sidebar-item selected"> <a class="sidebar-link waves-effect waves-dark sidebar-link" href="<?php echo site_url('Journal/details');?>" aria-expanded="false"><i class="mdi mdi-chart-bubble"></i><span class="hide-menu">Journal Entry</span></a></li>
                         <?php }else {?>
                           <li class="sidebar-item "> <a class="sidebar-link waves-effect City_scan-dark sidebar-link" href="<?php echo site_url('Journal/details');?>" aria-expanded="false"><i class="mdi mdi-chart-bubble"></i><span class="hide-menu">Journal Entry</span></a></li>  
+                        <?php } ?>  
+                        <?php if($this->uri->segment(1) && $this->uri->segment(1)=="Hawala") {?>
+                            <li class="sidebar-item selected"> <a class="sidebar-link waves-effect waves-dark sidebar-link" href="<?php echo site_url('Hawala/details');?>" aria-expanded="false"><i class="mdi mdi-chart-bubble"></i><span class="hide-menu">Hawala Entry</span></a></li>
+                        <?php }else {?>
+                          <li class="sidebar-item "> <a class="sidebar-link waves-effect City_scan-dark sidebar-link" href="<?php echo site_url('Hawala/details');?>" aria-expanded="false"><i class="mdi mdi-chart-bubble"></i><span class="hide-menu">Hawala Entry</span></a></li>  
                         <?php } ?> 
                         
                         <?php if($this->uri->segment(1) && $this->uri->segment(1)=="Report") {?>

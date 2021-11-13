@@ -182,10 +182,11 @@ class Model extends CI_Model {
 	}
 	public function getLedger($whereData)
     {	
-    	$this->db->select('accounts.*,Entry.vch_no,Journal.vch_no as vch_noj');
+    	$this->db->select('accounts.*,Entry.vch_no,Journal.vch_no as vch_noj,Hawala.vch_no as vch_noh');
 	    $this->db->from('accounts');
  	    $this->db->join('Entry', 'accounts.vouchar_id = Entry.id and accounts.type in (1,2,3,4,5,6,7,8,10,11)','left'); 
  	    $this->db->join('Journal', 'accounts.vouchar_id = Journal.id and accounts.type in (9)','left'); 
+ 	    $this->db->join('Hawala', 'accounts.vouchar_id = Hawala.id and accounts.type in (12,13)','left'); 
 	    $this->db->where($whereData);
 	  
 		$this->db->order_by('accounts.trxn_date asc');
@@ -231,6 +232,21 @@ class Model extends CI_Model {
 
 	    $this->db->where('Journal.client_id',$client_id);
 
+	    $query = $this->db->get();
+	    	// echo $this->db->last_query();
+	    return $query->result_array();
+	}
+	public function selectHawala($client_id,$id)
+    {	
+    	$this->db->select('hawala.*,debit.party_name as debit_party_name,debit.party_code as debit_party_code,credit.party_code as credit_party_code,credit.party_name as credit_party_name');
+	    $this->db->join('Party debit', 'hawala.debit_party = debit.id'); 
+	    $this->db->join('Party credit', 'hawala.credit_party = credit.id'); 
+	   	$this->db->from('hawala');
+
+	    $this->db->where('hawala.client_id',$client_id);
+	    if($id)
+	    $this->db->where('hawala.id',$id);
+	   
 	    $query = $this->db->get();
 	    	// echo $this->db->last_query();
 	    return $query->result_array();
