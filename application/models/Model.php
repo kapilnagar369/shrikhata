@@ -141,13 +141,23 @@ class Model extends CI_Model {
 	    return $query->result_array();
 	}
 
-	public function selectIDMaster($id)
-    {	 $whereData  = array('Idmaster.client_id' =>$id);
+	public function selectIDMaster($id,$party_id='',$exchang_id='')
+    {	
+    	
+    	if($party_id!=0 && $exchang_id!=0) {  
+    	$whereData  = array('Idmaster.client_id' =>$id,'Idmaster.party_code' =>$party_id,'Idmaster.exch_code' =>$exchang_id);} else if($party_id==0 && $exchang_id!=0) {
+		$whereData  = array('Idmaster.client_id' =>$id,'Idmaster.exch_code' =>$exchang_id);
+    	} else if($party_id!=0 && $exchang_id==0){
+		$whereData  = array('Idmaster.client_id' =>$id,'Idmaster.party_code' =>$party_id);
+    	} else {
+    	$whereData  = array('Idmaster.client_id' =>$id);
+    	}
 	    $this->db->select('Idmaster.*,Party.party_code,Party.id as party_id,Exchange.rate as exrate');
 	    $this->db->from('Idmaster');
-	   $this->db->join('Party', 'Idmaster.party_code = Party.id'); 
-	   $this->db->join('Exchange', 'Idmaster.exch_code = Exchange.id'); 
-	    $this->db->where($whereData);
+	    $this->db->join('Party', 'Idmaster.party_code = Party.id'); 
+	    $this->db->join('Exchange', 'Idmaster.exch_code = Exchange.id'); 
+	  	$this->db->where($whereData);
+	    
 	    $query = $this->db->get();
 	    
 	    return $query->result_array();

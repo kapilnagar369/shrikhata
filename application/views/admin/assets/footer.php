@@ -338,7 +338,10 @@ function clone1(ch) {
     $clone.find("input.patiin").attr("id",$clone.find("input.patiin").attr("id")+i);
     $clone.find("input.finalamountin").attr("id",$clone.find("input.finalamountin").attr("id")+i);
     $clone.find("input.grossprofitin").attr("id",$clone.find("input.grossprofitin").attr("id")+i);
-      $clone.find('input.pointtd').attr("readonly", true); 
+    $clone.find('input.pointtd').attr("readonly", true); 
+    $('#Upline_Code').attr("disabled", true); 
+
+$('#Idmaster_type').select2("enable", false)
 
     $clone.find("span.remove").css("display","block");
     $clone.find(".sno").text(parseInt($clone.find(".sno").text())+1)

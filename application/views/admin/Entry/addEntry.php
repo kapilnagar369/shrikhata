@@ -51,10 +51,13 @@
                                      <div class="form-group row">
                                         <label for="Entry_code" class="col-sm-1 text-right control-label col-form-label">Party</label>
                                         <div class="col-sm-2">
-                                           <select class="form-control" id="Upline_Code"    name="partty_code"  >
-                                             <option value=""> Please Select </option>
+                                           <select <?php if(isset($vouchtemp) && count($vouchtemp)>0) { echo 'disabled'; }  ?> onchange='window.location = "<?php echo site_url('Entry/addEntry/'); ?>"+this.value+"/"+$("#Idmaster_type").val()' class="form-control" id="Upline_Code"    name="partty_code"  >
+                                             <option value="0"> Please Select </option>
                                               <?php foreach($party as $pat) { ?>
-                                              <option           value="<?php echo $pat['id'] ?>"> <?php echo  $pat['party_code'] .' ( '. $pat['party_name'].')'; ?></option>
+                                              <option  value="<?php echo $pat['id'] ?>"
+                                                 <?php if($pat['id']==$party_id) { echo 'selected'; }  ?>
+
+                                                > <?php echo  $pat['party_code'] .' ( '. $pat['party_name'].')'; ?></option>
                                              
                                               <?php } ?>
                                             </select>
@@ -78,11 +81,14 @@
                                        <div class="form-group row">
                                         <label for="Entry_code" class="col-sm-1 text-right control-label col-form-label">Exchange </label>
                                         <div class="col-sm-2">
-                                            <select  class="form-control  myselect" id="Idmaster_type"  name="exch_code"  >
-                                              <option value="">Please Select</option>
+                                            <select  <?php if(isset($vouchtemp) && count($vouchtemp)>0) { echo 'disabled'; }  ?>  onchange='window.location = "<?php echo site_url('Entry/addEntry/'); ?>"+$("#Upline_Code").val()+"/"+this.value'    class="form-control  myselect" id="Idmaster_type"  name="exch_code"  >
+                                              <option value="0">Please Select</option>
                                               <?php if($Exchange) {
                                                   foreach($Exchange as $ExchangeData) { ?>
-                                              <option    <?php echo set_select('exch_code',$ExchangeData['id'], ( !empty($exch_code) && $exch_code == $ExchangeData['id'] ? TRUE : FALSE ))?>     value="<?php echo $ExchangeData['id']; ?>"><?php echo $ExchangeData['Exchange_Code'].' ('.$ExchangeData['Exchange_Name'].')'; ?></option>
+                                              <option    <?php if($ExchangeData['id']==$exc_id) { echo 'selected'; }  ?>     value="<?php echo $ExchangeData['id']; ?>"
+
+
+                                                ><?php echo $ExchangeData['Exchange_Code'].' ('.$ExchangeData['Exchange_Name'].')'; ?></option>
                                               <?php } } ?>
                                             </select>
                                           </div>

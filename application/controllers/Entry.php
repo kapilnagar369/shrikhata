@@ -18,7 +18,7 @@ class Entry extends CI_Controller {
       }
   }
 
-  public function addEntry()
+  public function addEntry($party_id='',$exc_id='')
   {  
    if ($this->session->userdata('Client')) {
             $this->load->view('admin/assets/header');
@@ -52,13 +52,24 @@ class Entry extends CI_Controller {
 
            if($result) {
              $wData  = array('client_id' =>$id,'vouchar_id'=>$result[0]['id']);
-            $data['vouchtemp']  = $this->Model->selectAllById('temp_voucher_details', $wData);
+            $vouchtemp  = $this->Model->selectAllById('temp_voucher_details', $wData);
+            if($vouchtemp) {
+              $data['vouchtemp']= $vouchtemp; }
+            // else { 
+             
+            //   $vouchtemp  = $this->Model->selectAllById('Idmaster', $wData);
+            //   $data['vouchtemp']= $vouchtemp;   
+            // }
+           
+            // $data['vouchtemp']= Array(  'user_id' => 24, 'party_code' => 'STD', 'party_id' => 45, 'id_rate' => 0.2);
             }
             $data['entryd']  = $result;
             $data['vouchar_no']  = $vouchar_no;
             $data['party'] = $this->Model->selectAllById('Party', $whereData);
             $data['Exchange']=$this->Model->selectAllById('Exchange',$whereData);
-            $data['Idmaster']=$this->Model->selectIDMaster($id);
+            $data['Idmaster']=$this->Model->selectIDMaster($id,$party_id,$exc_id);
+            $data['party_id']=$party_id;
+            $data['exc_id']=$exc_id;
             $this->load->view('admin/Entry/addEntry',$data);
             $this->load->view('admin/assets/footer');
         } else {

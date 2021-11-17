@@ -38,7 +38,7 @@
                     <div class="col-md-6 col-lg-3 col-xlg-3">
                         <a href="<?php echo site_url('Client/details');?>">
                         <div class="card card-hover">
-                            <div class="box bg-success text-center">
+                            <div class="box bg-info text-center">
                                 <h1 class="fontlight text-white"><i class="mdi mdi-chart-pie"></i></h1>
                                 <h3 style="color: white;"><?php if (empty($Client)) {
                                     echo '0';
@@ -56,7 +56,7 @@
                     <div class="col-md-6 col-lg-3 col-xlg-3">
                         <a href="<?php echo site_url('Party/details');?>">
                         <div class="card card-hover">
-                            <div class="box bg-danger text-center">
+                            <div class="box bg-info text-center">
                                 <h1 class="font-light text-white"><i class="mdi mdi-chart-scatterplot-hexbin"></i></h1>
                                 <h3 style="color: white;"><?php if (empty($Party)) {
                                         echo '0';
@@ -92,7 +92,7 @@
                     <div class="col-md-6 col-lg-3 col-xlg-3">
                         <a href="<?php echo site_url('/Idmaster/details');?>">
                         <div class="card card-hover">
-                            <div class="box bg-warning text-center">
+                            <div class="box bg-info text-center">
                                 <h1 class="font-light text-white"><i class="mdi mdi-account-multiple"></i></h1>
                                 <h3 style="color: white;"><?php if (empty($Idmaster)) {
                                         echo '0';
@@ -110,7 +110,7 @@
                     <div class="col-md-6 col-lg-3 col-xlg-3">
                         <a href="<?php echo site_url('/Entry/details');?>">
                         <div class="card card-hover">
-                            <div class="box bg-danger text-center">
+                            <div class="box bg-info text-center">
                                 <h1 class="font-light text-white"><i class="mdi mdi-account-multiple"></i></h1>
                                 <h3 style="color: white;"><?php if (empty($Entry)) {
                                         echo '0';
