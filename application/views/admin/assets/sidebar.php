@@ -80,15 +80,29 @@
                           <li class="sidebar-item "> <a class="sidebar-link waves-effect City_scan-dark sidebar-link" href="<?php echo site_url('Hawala/details');?>" aria-expanded="false"><i class="mdi mdi-chart-bubble"></i><span class="hide-menu">Hawala Entry</span></a></li>  
                         <?php } ?> 
                         
-                        <?php if($this->uri->segment(1) && $this->uri->segment(1)=="Report" && $this->uri->segment(2)!="Party") {?>
-                            <li class="sidebar-item selected"> <a class="sidebar-link waves-effect waves-dark sidebar-link" href="<?php echo site_url('Report/details');?>" aria-expanded="false"><i class="mdi mdi-contrast-circle"></i><span class="hide-menu">Exchange Report </span></a></li>
+                        <?php if($this->uri->segment(1) && $this->uri->segment(1)=="Report" && $this->uri->segment(2)=="details") {?>
+                            <li class="sidebar-item selected"> <a class="sidebar-link waves-effect waves-dark sidebar-link" href="<?php echo site_url('Report/details');?>" aria-expanded="false"><i class="mdi mdi-contrast-circle"></i><span class="hide-menu">Exchange Report(p/l) </span></a></li>
                         <?php }else {?>
-                          <li class="sidebar-item "> <a class="sidebar-link waves-effect City_scan-dark sidebar-link" href="<?php echo site_url('Report/details');?>" aria-expanded="false"><i class="mdi mdi-contrast-circle"></i><span class="hide-menu">Exchange Report</span></a></li>  
+                          <li class="sidebar-item "> <a class="sidebar-link waves-effect City_scan-dark sidebar-link" href="<?php echo site_url('Report/details');?>" aria-expanded="false"><i class="mdi mdi-contrast-circle"></i><span class="hide-menu">Exchange Report(p/l)</span></a></li>  
                         <?php } ?>
                           <?php if($this->uri->segment(1) && $this->uri->segment(1)=="Report" && $this->uri->segment(2)=="Party") {?>
-                            <li class="sidebar-item selected"> <a class="sidebar-link waves-effect waves-dark sidebar-link" href="<?php echo site_url('Report/Party');?>" aria-expanded="false"><i class="mdi mdi-contrast-circle"></i><span class="hide-menu">Party Report</span></a></li>
+                            <li class="sidebar-item selected"> <a class="sidebar-link waves-effect waves-dark sidebar-link" href="<?php echo site_url('Report/Party');?>" aria-expanded="false"><i class="mdi mdi-contrast-circle"></i><span class="hide-menu">Party Report(p/l)</span></a></li>
                         <?php }else { ?>
-                          <li class="sidebar-item "> <a class="sidebar-link waves-effect City_scan-dark sidebar-link" href="<?php echo site_url('Report/Party');?>" aria-expanded="false"><i class="mdi mdi-contrast-circle"></i><span class="hide-menu">Party Report</span></a></li>  
+                          <li class="sidebar-item "> <a class="sidebar-link waves-effect City_scan-dark sidebar-link" href="<?php echo site_url('Report/Party');?>" aria-expanded="true"><i class="mdi mdi-contrast-circle"></i><span class="hide-menu">Party Report(p/l)</span></a>
+                         </li>  
+                        <?php } ?>
+
+                         <?php if($this->uri->segment(1) && $this->uri->segment(1)=="Report" && $this->uri->segment(2)=="SParty") {?>
+                            <li class="sidebar-item selected"> <a class="sidebar-link waves-effect waves-dark sidebar-link" href="<?php echo site_url('Report/SParty');?>" aria-expanded="false"><i class="mdi mdi-contrast-circle"></i><span class="hide-menu">Summary Party Report</span></a></li>
+                        <?php }else { ?>
+                          <li class="sidebar-item "> <a class="sidebar-link waves-effect City_scan-dark sidebar-link" href="<?php echo site_url('Report/SParty');?>" aria-expanded="true"><i class="mdi mdi-contrast-circle"></i><span class="hide-menu">Summary Party Report</span></a>
+                         </li>  
+                        <?php } ?>
+                         <?php if($this->uri->segment(1) && $this->uri->segment(1)=="Report" && $this->uri->segment(2)=="SExchange") {?>
+                            <li class="sidebar-item selected"> <a class="sidebar-link waves-effect waves-dark sidebar-link" href="<?php echo site_url('Report/SExchange');?>" aria-expanded="false"><i class="mdi mdi-contrast-circle"></i><span class="hide-menu">Summary Exchange Report</span></a></li>
+                        <?php }else { ?>
+                          <li class="sidebar-item "> <a class="sidebar-link waves-effect City_scan-dark sidebar-link" href="<?php echo site_url('Report/SExchange');?>" aria-expanded="true"><i class="mdi mdi-contrast-circle"></i><span class="hide-menu">Summary Exchange Report</span></a>
+                         </li>  
                         <?php } ?> 
                         
                         <?php } ?> 

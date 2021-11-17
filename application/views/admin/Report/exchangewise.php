@@ -8,12 +8,12 @@
             <div class="page-breadcrumb">
                 <div class="row">
                     <div class="col-12 d-flex no-block align-items-center">
-                        <h4 class="page-title">Report</h4>
+                        <h4 class="page-title">Excahnge Report</h4>
                         <div class="ml-auto text-right">
                             <nav aria-label="breadcrumb">
                                 <ol class="breadcrumb">
                                     <li class="breadcrumb-item"><a href="<?php echo site_url('welcome/dashboard');?>">Home</a></li>
-                                    <li class="breadcrumb-item active" aria-current="page">Report</li>
+                                    <li class="breadcrumb-item active" aria-current="page">Exchange Report P/L</li>
                                 </ol>
                             </nav>
                         </div>
@@ -37,7 +37,7 @@
                             <?php echo $this->session->flashdata('deleteReport');?>
                         <div class="card">
                             <div class="card-body">
-                                <h5 class="card-title">Report</h5>
+                                <h5 class="card-title">Exchange Wise Report P/L</h5>
                              <div class="form-group row">
                                      <!--    <label for="Entry_code" class="col-sm-1 text-right control-label col-form-label">Party</label>
                                         <div class="col-sm-2">

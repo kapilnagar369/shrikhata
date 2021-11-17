@@ -109,7 +109,10 @@
                             <a class="nav-link dropdown-toggle text-muted waves-effect waves-dark pro-pic" href="" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                 <!-- <img src="<?php echo base_url();?>/uploads/admin/<?php echo $value['image'];?>" alt="user" class="rounded-circle" width="40px;" height="40px;"> -->
                             <b style="color: white;"> 
-                                <b>Welcome  <?php echo $this->session->userdata('Client')->client_name; ?> </b>
+                                <b>Welcome  <?php 
+                                 if($this->session->userdata('Client')) { echo $this->session->userdata('Client')->client_name; } else { echo $this->session->userdata('Myadmin')->name; } 
+
+                                ?> </b>
                                 <?php } ?></b>
                                 </a>
                             <div class="dropdown-menu dropdown-menu-right user-dd animated">

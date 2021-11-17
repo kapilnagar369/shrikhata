@@ -37,7 +37,7 @@
                             <?php echo $this->session->flashdata('deleteReport');?>
                         <div class="card">
                             <div class="card-body">
-                                <h5 class="card-title">Party Wise Report P/L</h5>
+                                <h5 class="card-title">Party Summery Report</h5>
                              <div class="form-group row">
                                      <!--    <label for="Entry_code" class="col-sm-1 text-right control-label col-form-label">Party</label>
                                         <div class="col-sm-2">
@@ -52,20 +52,21 @@
                                         </div> -->
                                     </div>  
                                 <div class="table-responsive">
-                                    <table  class="grid table table-striped table-bordered" width="100%">
+                                    <table  class="grid2 table table-striped table-bordered" width="100%">
                                         <thead>
                                             <tr>
                                              <th>Sr.No.</th>
                                              <th>Party  </th>
+                                             <th>UserID  </th>
                                              <th>Exchange   </th>
                                              
                                              <th>Point  </th>
                                              <th>Rate  </th>
 
-                                             <th>Gross Profit / Loss </th>
+                                             <th>Gross Amt </th>
                                               <th>Pati    </th>
                                               <th>Commsion </th>
-                                             <th>Net Profit / Loss   </th>
+                                             <th>Amount   </th>
                                                
                                             </tr>
                                             </thead>
@@ -79,13 +80,14 @@
                                               <td><?php echo $value['party_code'];?></td>
 
                                              <td ><?php  $i;?></td>
+                                              <td><?php echo $value['user_name'];?></td>
                                               <td><?php echo $value['Exchange_Code'];?></td>
-                                              <td><?php echo $value['point'];?></td>
-                                              <td><?php echo $value['id_rate'];?></td>
-                                              <td style="text-align: right;">   <?php  echo @number_format($value['gross_profit'],2,'.',''); ?></td>
+                                              <td style="text-align: right;" ><?php echo $value['point'];?></td>
+                                              <td style="text-align: right;"><?php echo $value['id_rate'];?></td>
+                                              <td style="text-align: right;">   <?php  echo @number_format($value['gross_amount'],2,'.',''); ?></td>
                                               <td style="text-align: right;">   <?php  echo @number_format($value['pati'],2,'.',''); ?></td>
                                               <td style="text-align: right;">   <?php  echo @number_format($value['commision'],2,'.',''); ?></td>
-                                              <td style="text-align: right;">   <?php  echo @number_format($value['net_profit'],2,'.',''); ?></td>
+                                              <td style="text-align: right;">   <?php  echo @number_format($value['final_amount'],2,'.',''); ?></td>
                                               </tr>
                                             <?php } ?>
                                         </tbody>

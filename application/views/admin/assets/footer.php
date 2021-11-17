@@ -664,7 +664,6 @@ $(document).ready(function() {
                                 
                 val = api.row(api.row($(rows).eq( i )).index()).data();      //current order index
                 $.each(val,function(index2,val2){
-                        console.log(index2,val2);
                         if (typeof subtotale[groupid] =='undefined'){
                             subtotale[groupid] = new Array();
                         }
@@ -699,6 +698,82 @@ $(document).ready(function() {
  
     // Collapse / Expand Click Groups
   $('.grid tbody').on( 'click', 'tr.group', function () {
+        var rowsCollapse = $(this).nextUntil('.group');
+        $(rowsCollapse).toggleClass('hidden');
+    });
+
+} );
+
+
+
+$(document).ready(function() {
+    var table = $('.grid2').not('.initialized').addClass('initialized').show().DataTable({
+        "columnDefs": [
+            { "visible": false, "targets": 0 }
+        ],
+        "order": [[ 0, 'asc' ]],
+        "stateSave": false,
+    "stateDuration": 60*60*24*365,
+    "displayLength": 100,
+    "sScrollX": "100%",
+    "dom": 'lfTrtip',
+        "drawCallback": function ( settings ) {
+            var api = this.api();
+            var rows = api.rows( {page:'current'} ).nodes();
+            var last=null;
+            var colonne = api.row(0).data().length;
+            var totale = new Array();
+            totale['Totale']= new Array();
+            var groupid = -1;
+            var subtotale = new Array();
+
+                
+            api.column(0, {page:'current'} ).data().each( function ( group, i ) {     
+                if ( last !== group ) {
+                    groupid++;
+                    $(rows).eq( i ).before(
+                        '<tr class="group"><td>'+group+'</td></tr>'
+                    );
+                    last = group;
+                }
+                
+                                
+                val = api.row(api.row($(rows).eq( i )).index()).data();      //current order index
+                $.each(val,function(index2,val2){
+                        if (typeof subtotale[groupid] =='undefined'){
+                            subtotale[groupid] = new Array();
+                        }
+                        if (typeof subtotale[groupid][index2] =='undefined'){
+                            subtotale[groupid][index2] = 0;
+                        }
+                        if (typeof totale['Totale'][index2] =='undefined'){ totale['Totale'][index2] = 0; }
+                        
+                        valore = Number(val2);
+                        subtotale[groupid][index2] += valore;
+                        totale['Totale'][index2] += valore;
+                });
+                
+                
+                
+            } );                
+    $('tbody').find('.group').each(function (i,v) {
+                    var rowCount = $(this).nextUntil('.group').length;
+            $(this).find('td:first').append($('<span />', { 'class': 'rowCount-grid' }).append($('<b />', { 'text': ' ('+rowCount+')' })));
+            $(this).find('td:first').attr('colspan',5);
+                         var subtd = '';
+                        for (var a=2;a<colonne;a++)
+                        { 
+                            if(a==8 || a==7 || a==6 || a==9)
+                            subtd += '<td>'+subtotale[i][a]+'</td>';
+                        }
+                         $(this).append(subtd);
+                });
+            
+        }
+    } );
+ 
+    // Collapse / Expand Click Groups
+  $('.grid2 tbody').on( 'click', 'tr.group', function () {
         var rowsCollapse = $(this).nextUntil('.group');
         $(rowsCollapse).toggleClass('hidden');
     });
