@@ -691,7 +691,7 @@ $(document).ready(function() {
                         for (var a=2;a<colonne;a++)
                         { 
                             if(a==8 || a==7 || a==6 || a==5)
-                            subtd += '<td>'+subtotale[i][a]+'</td>';
+                            subtd += '<td>'+subtotale[i][a].toFixed(2)+'</td>';
                         }
                          $(this).append(subtd);
                 });
@@ -767,7 +767,7 @@ $(document).ready(function() {
                         for (var a=2;a<colonne;a++)
                         { 
                             if(a==8 || a==7 || a==6 || a==9)
-                            subtd += '<td>'+subtotale[i][a]+'</td>';
+                            subtd += '<td>'+subtotale[i][a].toFixed(2)+'</td>';
                         }
                          $(this).append(subtd);
                 });
