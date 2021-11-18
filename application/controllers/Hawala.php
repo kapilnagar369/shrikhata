@@ -53,7 +53,7 @@ class Hawala extends CI_Controller {
               // $debit_party = $this->input->post('party_idh');
                $amount = $this->input->post('amount');
          
-               $where  = array('client_id' =>$this->session->userdata('Client')->id,'id'=>$debit_party);
+               $where  = array('client_id' =>$this->session->userdata('Client')->id,'id'=>$credit_party);
                $party_data=$this->Model->selectAllById('Party', $where);
             $accounts=array('client_id'=>$client_id,
                             'type'=>'12',
@@ -68,7 +68,7 @@ class Hawala extends CI_Controller {
           );
             
           $result = $this->Model->insert($accounts,'accounts');
-           $where  = array('client_id' =>$this->session->userdata('Client')->id,'id'=>$credit_party);
+           $where  = array('client_id' =>$this->session->userdata('Client')->id,'id'=>$debit_party);
             $party_data2=$this->Model->selectAllById('Party', $where);
            $accounts1=array('client_id'=>$client_id,
                             'type'=>'13',
