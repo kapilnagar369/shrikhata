@@ -49,8 +49,8 @@ class Hawala extends CI_Controller {
            $hawala_id = $this->Model->insert($data,'Hawala');
             
           
-              $credit_party = $this->input->post('party_ids');
-              $debit_party = $this->input->post('party_idh');
+              // $credit_party = $this->input->post('party_ids');
+              // $debit_party = $this->input->post('party_idh');
                $amount = $this->input->post('amount');
          
                $where  = array('client_id' =>$this->session->userdata('Client')->id,'id'=>$debit_party);
