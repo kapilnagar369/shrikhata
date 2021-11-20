@@ -17,8 +17,11 @@ class Ledger extends CI_Controller {
                          $data['tally_log'] = $this->Model->getSingleRoworder('tally_log', $wh,'id desc');
                         
              $whereData  = array('accounts.party_id' =>$party_id,'DATE(accounts.trxn_date) >='=>date('Y-m-d',strtotime($start)),'DATE(accounts.trxn_date) <='=>date('Y-m-d',strtotime($end)));
+            
               $data['result']=$this->Model->getLedger($whereData);
+              $data['start']=$start;
               $data['party_id']=$party_id;
+              $data['end']=$end;
               $whereData  = array('accounts.party_id' =>$party_id,'DATE(accounts.trxn_date) <'=>date('Y-m-d',strtotime($start)));
               $data['bal']=$this->Model->getBalance($whereData)->bal;
 
@@ -41,11 +44,11 @@ class Ledger extends CI_Controller {
         $tally_log=array('client_id'=>$this->session->userdata('Client')->id,
                             'log_time'=>date('Y-m-d H:i:s'),
                             'amount'=>$_POST['closebal'],
-                            'party_id'=>$_POST['partty_code'],
+                            'party_id'=>$_POST['party_code'],
                             'dr_cr'=>$dr_cr
                 );
       $result = $this->Model->insert($tally_log,'tally_log');
-      $where =array('party_id'=>$_POST['partty_code']);
+      $where =array('party_id'=>$_POST['party_code']);
        $updatearr =array('is_tally'=>0);
       $this->Model->update($where,'accounts',$updatearr);
      

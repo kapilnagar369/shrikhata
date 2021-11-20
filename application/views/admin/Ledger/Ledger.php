@@ -69,9 +69,9 @@
                                         </div>
                                              <label for="Entry_code" class="col-sm-1 text-right control-label col-form-label">Trxn Date </label>
                                         <div class="col-sm-2">
-                                         <input type="text" name="daterange">
-                                         <input type="hidden" value="<?php echo date('Y-m-d');?>" id="start">
-                                         <input type="hidden" value="<?php echo date('Y-m-d');?>" id="end">
+                                         <input type="text" name="datefilter" value="<?php if(isset($start)) { echo  date('d-m-Y',strtotime($start)).'-'.date('d-m-Y',strtotime($end)); } else { echo  date('d-m-Y'); } ?>   ">
+                                         <input type="hidden" value="<?php if(isset($start)) {echo  date('d-m-Y',strtotime($start)); } else { echo  date('d-m-Y'); } ?>" id="start">
+                                         <input type="hidden" value="<?php if(isset($end)) {echo  date('d-m-Y',strtotime($end)); } else { echo  date('d-m-Y'); } ?>" id="end">
                                        
                                         </div>
 
@@ -215,6 +215,7 @@
                                         <div class="col-sm-8">
                                             <input type="date"   class="form-control" id="date" value="<?php  echo date('Y-m-d'); ?>"  name="trxn_date" required >
                                             <input type="hidden"   class="form-control" id="party_ids" name="party_ids" required >
+                                            <input type="hidden"   class="form-control" id="urllll" name="urll" value="<?php echo $_SERVER['REQUEST_URI']; ?>" >
                                         </div>
                                      
                                     

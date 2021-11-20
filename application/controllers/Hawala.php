@@ -88,13 +88,20 @@ class Hawala extends CI_Controller {
                   <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
                   <strong>Hawala Entry Details Added Sucessfully!!</strong>.
                   </div>');
-                redirect('Ledger/details');
+                $uri =  $this->input->post('urll');
+               $protocol = isset($_SERVER["HTTPS"]) ? 'https' : 'http';
+                redirect($protocol."://" . $_SERVER['HTTP_HOST'] .$uri, 'refresh'); 
+             
             } else {
                 $this->session->set_flashdata('AddLedger', '<div class="alert alert-danger ">
                 <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
                 <strong>Sorry Hawala Entry Not Added!!</strong>.
                 </div>');
-                 redirect('Ledger/details');
+
+               $uri =$this->input->post('urll');
+            
+                redirect($protocol."://" . $_SERVER['HTTP_HOST'] .$uri, 'refresh'); 
+
             }
   }
 

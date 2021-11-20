@@ -2,7 +2,8 @@
             <!-- footer -->
             <!-- ============================================================== -->
             <footer class="footer text-center" style="position: fixed !important;">
-                All Rights Reserved. Designed and Developed by  <a href="http://codecrisp.in/" target="_blank">CodeCrisp Technologies</a> .
+                All Rights Reserved. Made With Love <span class="mdi mdi-heart pull-left"></span>
+
             </footer>
             <!-- ============================================================== -->
             <!-- End footer -->
@@ -539,21 +540,44 @@ var amounttd =parseFloat($('#amounttd'+thenum).val());
  $('#grossprofittd'+thenum).text((((rate-exrate)*pointtd)/<?php echo $amount_ratio; ?>).toFixed(2)); 
 
 }
-function myCallback(start, end) {
-  var startdate=  start.format('YYYY-MM-DD')
-  var enddate=  end.format('YYYY-MM-DD')
-    $('#start').val(startdate);
-    $('#end').val(enddate);
-   if($('#Upline_Code').val()!='') {
-    var party_code= $('#Upline_Code').val();
-   window.location.href='<?php  echo base_url('index.php/Ledger/details/') ?>'+party_code+'/'+startdate+'/'+enddate
- }
-}
 function changeparty(party_code) {
   var start =  $('#start').val();
  var end =   $('#end').val();
      window.location.href='<?php  echo base_url('index.php/Ledger/details/') ?>'+party_code+'/'+start+'/'+end
    }
+
+function myCallback(start, end) {
+  var startdate=  start.format('YYYY-MM-DD')
+  var enddate=  end.format('YYYY-MM-DD')
+    $('#start').val(startdate);
+    $('#end').val(enddate);
+   if($('#party_code').val()!='') {
+    var party_code= $('#party_code').val();
+   window.location.href='<?php  echo base_url('index.php/Ledger/details/') ?>'+party_code+'/'+startdate+'/'+enddate
+ }
+}
+
+
+$(function() {
+
+  $('input[name="datefilter"]').daterangepicker({
+      autoUpdateInput: false,
+      locale: {
+          cancelLabel: 'Clear'
+      }
+  },myCallback);
+
+  $('input[name="datefilter"]').on('apply.daterangepicker', function(ev, picker) {
+      $(this).val(picker.startDate.format('DD/MM/YYYY') + ' - ' + picker.endDate.format('DD/MM/YYYY'));
+  });
+
+  $('input[name="datefilter"]').on('cancel.daterangepicker', function(ev, picker) {
+      $(this).val('');
+  });
+
+});
+
+
 $(function(){
 
 $("#alltrxn").click(function () {
